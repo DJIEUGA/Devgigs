@@ -9,22 +9,24 @@
             </h2>
             <p class="mb-3">Create an account to post gigs</p>
         </header>
-
-        <form action="">
+        {% if message %}
+        <p class="text-danger text-sm mt-1">
+            {{message}}
+        </p>
+        {% endif %}
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
             <div class="row mb-3">
                 <label for="name" class="inline-block text-lg mb-2">
                     Name
                 </label>
-                <input type="text" class="rounded p-2 col-md-12 border" name="name" />
+                <input type="text" class="rounded p-2 col-md-12 border" name="username" />
             </div>
 
             <div class="row mb-3">
                 <label for="email" class="inline-block text-lg mb-2">Email</label>
                 <input type="email" class="border rounded p-2 col-md-12" name="email" />
                 <!-- show error message here -->
-                <p class="text-danger text-sm mt-1">
-                    Please enter a valid email
-                </p>
             </div>
 
             <div class="row mb-3">
@@ -38,7 +40,7 @@
                 <label for="password2" class="inline-block text-lg mb-2">
                     Confirm Password
                 </label>
-                <input type="password" class="rounded p-2 col-md-12 border" name="password2" />
+                <input type="password" class="rounded p-2 col-md-12 border" name="confirmation" />
             </div>
 
             <div class="row mb-3">

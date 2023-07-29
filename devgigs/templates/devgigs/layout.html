@@ -100,6 +100,20 @@
         <a class="navbar-brand ml-0 font-weight-bold h1 col-lg-0" href="/">DevGigs</a>
         <div class="row mr-lg-0 mr-sm-4">
             <ul class="navbar-nav d-sm-flex flex-row justify-content-sm-between align-items-center">
+                {% if user.is_authenticated %}
+                <li class="nav-item mr-3 text-capitalize">
+                    {{user.username}}
+                </li>
+                <li class="nav-item mr-3">
+                    <a class="nav-link text-capitalize" href="{% url 'manage' %}"><i class="fa-solid fa-gear"></i>
+                        Manage Gigs</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a class="nav-link text-capitalize" href="{% url 'logout' %}"><i
+                            class="fa-solid fa-door-closed"></i>
+                        Logout </a>
+                </li>
+                {% else %}
                 <li class="nav-item mr-3">
                     <a href="{% url 'register' %}" class="nav-link text-capitalize"><i
                             class="fa-solid fa-user-plus"></i>
@@ -109,16 +123,6 @@
                     <a class="nav-link text-capitalize" href="{% url 'login' %}"><i
                             class="fa-solid fa-arrow-right-to-bracket"></i>
                         Login</a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item mr-3">
-                    <a class="nav-link text-capitalize" href="{% url 'logout' %}"><i class="fa-solid fa-gear"></i>
-                        Manage Gigs</a>
-                </li>
-                <li class="nav-item mr-3">
-                    <a class="nav-link text-capitalize" href="{% url 'manage' %}"><i
-                            class="fa-solid fa-door-closed"></i>
-                        Logout </a>
                 </li>
                 {% endif %}
             </ul>

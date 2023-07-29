@@ -9,15 +9,20 @@
             </h2>
             <p class="mb-3">Log in to post gigs</p>
         </header>
-
-        <form action="">
+        {% if message %}
+        <p class="text-danger text-sm mt-1">
+            {{message}}
+        </p>
+        {% endif %}
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
             <div class="row mb-3">
-                <label for="email" class="inline-block text-lg mb-2">Email</label>
-                <input type="email" class="border rounded p-2 col-md-12" name="email" />
+                <label for="username" class="inline-block mb-2">Username</label>
+                <input type="text" class="border rounded p-2 col-md-12" name="username" />
             </div>
 
             <div class="row mb-3">
-                <label for="password" class="inline-block text-lg mb-2">
+                <label for="password" class="inline-block mb-2">
                     Password
                 </label>
                 <input type="password" class="border rounded p-2 col-md-12" name="password" />
