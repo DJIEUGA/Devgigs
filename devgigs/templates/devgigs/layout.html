@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DevGigs | Find Python or Django Jobs & Projects{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'devgigs/styles.css' %}" />
+    <script src="{% static 'devgigs/js/createModal.js' %}"></script>
+    {% block script %}{% endblock %}
+</head>
+
+<body>
+    <div class="modal-backdrop"></div>
+    <!-- model -->
+    <div id="modal-container">
+        <div class="mx-auto create-modal">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="close">&times;</span>
+                    <header class="text-center">
+                        <h2 class="font-weight-bold text-uppercase mb-1">
+                            Create a Gig
+                        </h2>
+                        <p class="mb-4">Post a gig to find a developer</p>
+                    </header>
+
+                    <form action="">
+                        <div class="mb-3">
+                            <label for="company" class="inline-block mb-2">Company Name</label>
+                            <input type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1" name="company" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="title" class="inline-sm-block mb-2">Job Title</label>
+                            <input type="text" class="border rounded p-2 col-md-6 col-md-12 mx-1" name="title"
+                                placeholder="Example: Senior Laravel Developer" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="location" class="inline-block mb-2">Job Location</label>
+                            <input type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1" name="location"
+                                placeholder="Example: Remote, Boston MA, etc" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="inline-block mb-2">Contact Email</label>
+                            <input type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1" name="email" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="website" class="inline-block mb-2">
+                                Website/Application URL
+                            </label>
+                            <input type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1" name="website" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tags" class="inline-block mb-2">
+                                Tags (Comma Separated)
+                            </label>
+                            <input type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1" name="tags"
+                                placeholder="Example: Laravel, Backend, Postgres, etc" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="logo" class="inline-block mb-2">
+                                Company Logo
+                            </label>
+                            <input type="file" class="border rounded p-2 col-sm-6 mx-1" name="logo" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="d-block mb-2">
+                                Job Description
+                            </label>
+                            <textarea class="border rounded p-2 col-sm-6 col-md-12 mx-1" name="description" rows="10"
+                                placeholder="Include tasks, requirements, salary, etc"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <button class="bg-primary border-0 text-white rounded py-2 px-4">
+                                Create Gig
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav style="z-index: 2"
+        class="fixed-top navbar navbar-expand-lg mb-3 d-flex bg-white flex-row justify-content-around">
+        <a class="navbar-brand ml-0 font-weight-bold h1 col-lg-0" href="/">DevGigs</a>
+        <div class="row mr-lg-0 mr-sm-4">
+            <ul class="navbar-nav d-sm-flex flex-row justify-content-sm-between align-items-center">
+                <li class="nav-item mr-3">
+                    <a href="{% url 'register' %}" class="nav-link text-capitalize"><i
+                            class="fa-solid fa-user-plus"></i>
+                        Register</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a class="nav-link text-capitalize" href="{% url 'login' %}"><i
+                            class="fa-solid fa-arrow-right-to-bracket"></i>
+                        Login</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item mr-3">
+                    <a class="nav-link text-capitalize" href="{% url 'logout' %}"><i class="fa-solid fa-gear"></i>
+                        Manage Gigs</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a class="nav-link text-capitalize" href="{% url 'manage' %}"><i
+                            class="fa-solid fa-door-closed"></i>
+                        Logout </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <main style="margin-top: 100px; margin-bottom: 50px;" class="container mx-auto  mb-5">
+        {% block body %}
+        {% endblock %}
+    </main>
+    <footer style="z-index: 1"
+        class="fixed-bottom d-flex flex-row justify-content-around bg-primary mx-auto px-2 py-2 rounded text-white col-sm-7">
+        <p class="px-sm-1 ml-1 py-1">Copyright &copy; 2023, All Rights reserved</p>
+        <button id="create-btn" class="bg-dark border border-0 rounded text-white py-2 px-sm-1 px-md-4">Post
+            Job</button>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+{% extends 'devgigs/layout.html' %}
+
+{% block title %}
+DevGis | Manage Listings
+{% endblock %}
+
+{% block body %}
+<!-- search -->
+
+<div class="d-flex flex-column align-items-center">
+<form style="margin-top: -15px" class="mx-auto col-md-8 justify-content-center" action="/">
+    <div class="relative d-flex flex-row border col-md-12 p-1 rounded-pill">
+        <div style="margin-left: 7px; margin-top: 2px; z-index: 1;" class="position-absolute pt-1 pl-0">
+            <i class="fa fa-search text-secondary z-1"></i>
+        </div>
+        <input style="margin-left: 20px;" id="search" type="text" name="search"
+            class="py-1 col-md-8  outline-0 border border-0 px-2 rounded-lg z-0" placeholder="Search Gigs..." />
+        <div style="right: -1px; top: -1px;" class="position-absolute  search-btn">
+            <button style="border-top-left-radius: 50%!important; border-bottom-left-radius: 0!important;" type="submit"
+                class="py-2 border border-white  text-white rounded-pill bg-primary ">
+                Search
+            </button>
+        </div>
+    </div>
+</form>
+<!-- Manage -->
+<div class="row mt-4 pt-2 col-md-6 text-center mx-auto">
+    <div class="bg-light col-md-12 justify-content-center border border-primary px-3 rounded">
+        <header>
+            <h1 class="text-center font-bold my-5 uppercase">
+                Manage Gigs
+            </h1>
+        </header>
+        <table class="col-md-12 table-auto rounded-sm">
+            <tbody>
+                <tr class="border-top border-bottom">
+                    <td class="px-2 py-2">
+                        <a href="show.html">
+                            Django Senior Developer
+                        </a>
+                    </td>
+                    <td class="px-2 py-3 border-top border-bottom">
+                        <a href="edit.html"
+                            class="text-primary px-1 py-2"><i
+                                class="fa-solid fa-pen-to-square"></i>
+                            Edit</a>
+                    </td>
+                    <td class="px-3">
+                        <form action="">
+                            <button class="text-danger btn">
+                                <i class="fa-solid fa-trash-can"></i>
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+
+                <tr class="border-top border-bottom">
+                    <td class="px-2 py-3 ">
+                        <a href="show.html">
+                            Junior Developer Opening
+                        </a>
+                    </td>
+                    <td class="px-2">
+                        <a href="edit.html" class="text-primary px-1 py-2 rounded"><i
+                                class="fa-solid fa-pen-to-square"></i>
+                            Edit</a>
+                    </td>
+                    <td class="px-2">
+                        <form action="">
+                            <button class="text-danger btn">
+                                <i class="fa-solid fa-trash-can"></i>
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

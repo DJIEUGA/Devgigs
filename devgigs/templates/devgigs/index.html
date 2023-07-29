@@ -1,0 +1,175 @@
+{% extends 'devgigs/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- hero -->
+<section class="flex-column justify-content-center align-center text-center mb-0 mt-5">
+    <img style="height: 350px !important;" class="mx-auto col-sm-7" src="{% static 'devgigs/images/django01.png' %}"
+        alt="">
+    <div class="z-0">
+        <h1 class="mt-0 text-lg font-bold text-uppercase text-primary">
+            Dev<span class="text-black">Gigs</span>
+        </h1>
+        <p class="text-2xl text-gray-200 font-bold my-2">
+            Find or post Django and Python jobs
+        </p>
+        <div>
+            <a href="register.html"
+                class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black">Sign
+                Up to List a Gig</a>
+        </div>
+    </div>
+</section>
+
+<!-- search -->
+<form style="margin-top: -15px" class="mx-auto col-md-8 justify-content-center mb-5" action="/">
+    <div class="relative d-flex flex-row border col-md-12 p-1 rounded-pill">
+        <div style="margin-left: 7px; margin-top: 2px; z-index: 1;" class="position-absolute pt-1 pl-0">
+            <i class="fa fa-search text-secondary z-1"></i>
+        </div>
+        <input style="margin-left: 20px;" id="search" type="text" name="search"
+            class="py-1 col-md-8  outline-0 border border-0 px-2 rounded-lg z-0" placeholder="Search Gigs..." />
+        <div style="right: -1px; top: -1px;" class="position-absolute  search-btn">
+            <button style="border-top-left-radius: 50%!important; border-bottom-left-radius: 0!important;" type="submit"
+                class="py-2 border border-white  text-white rounded-pill bg-primary ">
+                Search
+            </button>
+        </div>
+    </div>
+</form>
+
+<!-- listings -->
+<div style="margin-bottom:112px;" class="mx-auto col-md-12 justify-content-center">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="bg-light col-md-12 border rounded py-2">
+                <div class="d-flex flex-md-row justify-content-start">
+                    <div class="col-sm-5"><img class="col-md-12"
+                            src="{% static 'devgigs/images/no-image-icon-6.png' %}" alt="No image" /></div>
+                    <div class="col-sm-5 ">
+                        <h3 style="font-size: larger;">
+                            <a href="show.html">Senior Django Developer</a>
+                        </h3>
+                        <div class="font-weight-bold mb-2">Acme Corp</div>
+                        <ul class="d-flex flex-row justify-content-start">
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Django</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">API</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Backend</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Vue</a>
+                            </li>
+                        </ul>
+                        <div class="font-weight-bold mt-4">
+                            <i class="fa-solid fa-location-dot"></i> Boston,
+                            MA
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="bg-light col-md-12 border rounded py-2">
+                <div class="d-flex flex-md-row justify-content-start">
+                    <div class="col-sm-5"><img class="col-md-12 d-block"
+                            src="{% static 'devgigs/images/no-image-icon-6.png' %}" alt="No image" /></div>
+                    <div class="col-sm-5">
+                        <h3 style="font-size: larger;">
+                            <a href="show.html">Senior Django Developer</a>
+                        </h3>
+                        <div class="font-weight-bold mb-2">Acme Corp</div>
+                        <ul class="d-flex flex-row justify-content-start">
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Django</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">API</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Backend</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Vue</a>
+                            </li>
+                        </ul>
+                        <div class="font-weight-bold mt-4">
+                            <i class="fa-solid fa-location-dot"></i> Boston,
+                            MA
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="bg-light col-md-12 border rounded py-2">
+                <div class="d-flex flex-md-row justify-content-start">
+                    <div class="col-sm-5"><img class="col-md-12 d-block"
+                            src="{% static 'devgigs/images/no-image-icon-6.png' %}" alt="No image" /></div>
+                    <div class="col-sm-5">
+                        <h3 style="font-size: larger;">
+                            <a href="show.html">Senior Django Developer</a>
+                        </h3>
+                        <div class="font-weight-bold mb-2">Acme Corp</div>
+                        <ul class="d-flex flex-row justify-content-start">
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Django</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">API</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Backend</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Vue</a>
+                            </li>
+                        </ul>
+                        <div class="font-weight-bold mt-4">
+                            <i class="fa-solid fa-location-dot"></i> Boston,
+                            MA
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="bg-light col-md-12 border rounded py-2">
+                <div class="d-flex flex-md-row justify-content-start">
+                    <div class="col-sm-5 p-0"><img class="col-md-12 d-block"
+                            src="{% static 'devgigs/images/no-image-icon-6.png' %}" alt="No image" /></div>
+                    <div class="col-sm-5 p-0">
+                        <h3 style="font-size: larger;">
+                            <a href="show.html">Senior Django Developer</a>
+                        </h3>
+                        <div class="font-weight-bold mb-2">Acme Corp</div>
+                        <ul class="d-flex flex-row justify-content-start">
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Django</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">API</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Backend</a>
+                            </li>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="#">Vue</a>
+                            </li>
+                        </ul>
+                        <div class="font-weight-bold mt-4">
+                            <i class="fa-solid fa-location-dot"></i> Boston,
+                            MA
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
