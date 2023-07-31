@@ -19,4 +19,18 @@ class Listing(models.Model):
     tags = models.CharField(max_length=25)
     location = models.CharField(max_length=255)
     timestamp = models.DateTimeField(auto_now_add=True)
-    logo = models.ImageField(blank=True, upload_to='images/')
+    logo = models.ImageField(blank=True, null=True, upload_to='images/')
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "author": self.user.username,
+            "email": self.email,
+            "title": self.title,
+            "website": self.website,
+            "description": self.description,
+            "company": self.company,
+            "tags": self.tags,
+            "location": self.location,
+            "timestamp": self.timestamp.strftime("%b %d %Y, %I:%M %p")
+        }

@@ -11,8 +11,11 @@ function control_modal() {
     const modal = document.querySelector('.create-modal')
     const closeModal = document.querySelector('.close')
 
-    // o
     openModal.onclick = () => {
+        document.querySelector('#form-modal')
+        document.querySelector('#modal-heading').innerHTML = 'Create a Gig'
+        document.querySelector('#modal-subheading').innerHTML = 'Post a gig to find a developer'
+        document.querySelector('#form-save-btn').innerHTML = 'Create'
         openModal.setAttribute('disabled', 'true')
         modal.style.display = 'block'
         document.querySelector('.modal-backdrop').style.display = 'block'
@@ -20,7 +23,7 @@ function control_modal() {
 
     // close modal
     closeModal.onclick = () => {
-        openModal.removeAttribute('disabled')
+        document.querySelector('#create-btn').removeAttribute('disabled')
         modal.style.display = 'none'
         document.querySelector('.modal-backdrop').style.display = 'none'
     }

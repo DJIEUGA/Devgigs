@@ -1,4 +1,5 @@
 {% extends 'devgigs/layout.html' %}
+{% load static %}
 
 {% block title %}
 DevGis | Manage Listings
@@ -13,8 +14,8 @@ DevGis | Manage Listings
         <div style="margin-left: 7px; margin-top: 2px; z-index: 1;" class="position-absolute pt-1 pl-0">
             <i class="fa fa-search text-secondary z-1"></i>
         </div>
-        <input style="margin-left: 20px;" id="search" type="text" name="search"
-            class="py-1 col-md-8  outline-0 border border-0 px-2 rounded-lg z-0" placeholder="Search Gigs..." />
+        <input style="margin-left: 30px;" id="search" type="text" name="search"
+            class="py-1 col-md-8  outline-0 border border-0 px-2 rounded z-0" placeholder="Search Gigs..." />
         <div style="right: -1px; top: -1px;" class="position-absolute  search-btn">
             <button style="border-top-left-radius: 50%!important; border-bottom-left-radius: 0!important;" type="submit"
                 class="py-2 border border-white  text-white rounded-pill bg-primary ">
@@ -40,10 +41,10 @@ DevGis | Manage Listings
                         </a>
                     </td>
                     <td class="px-2 py-3 border-top border-bottom">
-                        <a href="edit.html"
-                            class="text-primary px-1 py-2"><i
+                        <button id="edit-btn"
+                            class="text-primary border-0 rounded px-3 py-2"><i
                                 class="fa-solid fa-pen-to-square"></i>
-                            Edit</a>
+                            Edit</button>
                     </td>
                     <td class="px-3">
                         <form action="">
@@ -80,4 +81,7 @@ DevGis | Manage Listings
     </div>
 
 </div>
+{% block script %}
+<script src="{% static 'devgigs/js/editListing.js' %}"></script>
+{% endblock %}
 {% endblock %}

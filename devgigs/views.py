@@ -1,5 +1,5 @@
 from django.db import IntegrityError
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.urls import reverse
@@ -9,15 +9,93 @@ from .models import *
 
 
 def index(request):
+    listings = Listing.objects.all().order_by("-id")
     return render(request, "devgigs/index.html", {
-        "msg": "Welcome to the landing page"
+        "listings": listings
     })
 
 
-def show_listing(request, listing):
+def show_listing(request, listing_id):
+    try:
+        listing = Listing.objects.get(pk=listing_id)
+    except Listing.DoesNotExist:
+        pass
+
     return render(request, 'devgigs/show.html', {
         "listing": listing
     })
+
+
+def get_listing(request, listing):
+    """Get a single listing from the database"""
+    try:
+        listing = Listing.objects.get(pk=listing)
+    except Listing.DoesNotExist:
+        return JsonResponse({"message": "Listing does not exist!"}, status=404)
+
+    return JsonResponse({"listing": listing}, safe=False)
+
+
+def create_listing(request):
+    if request.method == "POST":
+        company = request.POST.get("company")
+        title = request.POST.get("title")
+        location = request.POST.get("location")
+        email = request.POST.get("email")
+        website = request.POST.get("website")
+        tags = request.POST.get("tags")
+        logo = request.FILES["logo"]
+        description = request.POST.get("description")
+
+        try:
+            listing = Listing.objects.create(user=request.user, email=email, title=title, website=website,
+                                             description=description, company=company, tags=tags, location=location, logo=logo)
+            listing.save()
+            return render(request, "devgigs/index.html", {
+                "message": "Listing created successfully!"
+            })
+        except Listing.DoesNotExist:
+            return render(request, "devgigs/index.html", {
+                "Oops could not create listing!"
+            })
+
+
+def edit_listing(request, listing_id):
+    if request.method == "POST":
+        try:
+            # Get listing to be updated
+            listing = Listing.objects.get(pk=listing_id)
+
+            listing.company = request.POST.get("company")
+            listing.title = request.POST.get("title")
+            listing.location = request.POST.get("location")
+            listing.email = request.POST.get("email")
+            listing.website = request.POST.get("website")
+            listing.tags = request.POST.get("tags")
+            listing.logo = request.FILES["logo"]
+            listing.description = request.POST.get("description")
+
+            listing.save()
+            return render(request, "devgigs/show.html", {
+                "message": "Listing updated successfully!",
+                "listing": listing
+            })
+
+        except Listing.DoesNotExist:
+            return render(request, "devgigs/manage.html", {
+                "message": "Oops, could not get listing!"
+            })
+
+
+def delete_listing(request, listing_id):
+    if request.method == "GET":
+        try:
+            listing = Listing.objects.get(pk=listing_id)
+            listing.delete()
+        except Listing.DoesNotExist:
+            return render(request, "devgigs/manage.html", {
+                "message": "Listing was not found!"
+            })
 
 
 def login_view(request):
@@ -39,9 +117,13 @@ def login_view(request):
     else:
         return render(request, "devgigs/login.html")
 
+
 def manage_view(request):
+    listings = Listing.objects.filter(user=request.user).order_by('-id')
     return render(request, 'devgigs/manage.html', {
+        "listings": listings
     })
+
 
 def logout_view(request):
     logout(request)

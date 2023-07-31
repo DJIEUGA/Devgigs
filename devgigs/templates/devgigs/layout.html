@@ -26,13 +26,13 @@
                 <div class="modal-body">
                     <span class="close">&times;</span>
                     <header class="text-center">
-                        <h2 class="font-weight-bold text-uppercase mb-1">
+                        <h2 id="modal-heading" class="font-weight-bold text-uppercase mb-1">
                             Create a Gig
                         </h2>
-                        <p class="mb-4">Post a gig to find a developer</p>
+                        <p id="modal-subheading" class="mb-4">Post a gig to find a developer</p>
                     </header>
 
-                    <form action="">
+                    <form id="form-modal" action="">
                         <div class="mb-3">
                             <label for="company" class="inline-block mb-2">Company Name</label>
                             <input type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1" name="company" />
@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button class="bg-primary border-0 text-white rounded py-2 px-4">
+                            <button id="form-save-btn" class="bg-primary border-0 text-white rounded py-2 px-4">
                                 Create Gig
                             </button>
                         </div>
@@ -135,7 +135,7 @@
     <footer style="z-index: 1"
         class="fixed-bottom d-flex flex-row justify-content-around bg-primary mx-auto px-2 py-2 rounded text-white col-sm-7">
         <p class="px-sm-1 ml-1 py-1">Copyright &copy; 2023, All Rights reserved</p>
-        <button id="create-btn" class="bg-dark border border-0 rounded text-white py-2 px-sm-1 px-md-4">Post
+        <button id="create-btn" class="bg-dark border border-0 rounded text-white py-2 px-sm-1 px-md-4 mb-1">Post
             Job</button>
     </footer>
 </body>
