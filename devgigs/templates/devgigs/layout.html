@@ -33,6 +33,7 @@
                     </header>
 
                     <form id="form-modal" action="">
+                    {% csrf_token %}
                         <div class="mb-3">
                             <label for="company" class="inline-block mb-2">Company Name</label>
                             <input type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1" name="company" />
@@ -95,8 +96,8 @@
             </div>
         </div>
     </div>
-    <nav style="z-index: 2"
-        class="fixed-top navbar navbar-expand-lg mb-3 d-flex bg-white flex-row justify-content-around">
+    <nav style="z-index: 2; background-color: rgba(255, 255, 255, 0.932);border-bottom:1px solid rgba(162, 162, 179, 0.425);"
+        class="fixed-top navbar navbar-expand-lg mb-3 d-flex flex-row justify-content-around">
         <a class="navbar-brand ml-0 font-weight-bold h1 col-lg-0" href="/">DevGigs</a>
         <div class="row mr-lg-0 mr-sm-4">
             <ul class="navbar-nav d-sm-flex flex-row justify-content-sm-between align-items-center">

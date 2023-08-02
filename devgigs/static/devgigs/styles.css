@@ -3,6 +3,10 @@ footer {
     opacity: 0.8 !important;
 }
 
+body {
+    background: linear-gradient(90deg, rgb(224, 228, 230) 0%, rgb(228, 233, 238) 10%, white 50% );
+}
+
 footer p,
 footer a {
     opacity: 1 !important;

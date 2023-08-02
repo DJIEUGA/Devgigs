@@ -4,12 +4,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.urls import reverse
 from .models import *
+import re
 
 # Create your views here.
 
 
 def index(request):
     listings = Listing.objects.all().order_by("-id")
+    for listing in listings:
+        listing.tags = listing.tags.split(',')
+        print(listing.tags)
     return render(request, "devgigs/index.html", {
         "listings": listings
     })
@@ -44,16 +48,14 @@ def create_listing(request):
         email = request.POST.get("email")
         website = request.POST.get("website")
         tags = request.POST.get("tags")
-        logo = request.FILES["logo"]
+        logo = request.FILES.get("logo")
         description = request.POST.get("description")
 
         try:
             listing = Listing.objects.create(user=request.user, email=email, title=title, website=website,
                                              description=description, company=company, tags=tags, location=location, logo=logo)
             listing.save()
-            return render(request, "devgigs/index.html", {
-                "message": "Listing created successfully!"
-            })
+            return HttpResponseRedirect(reverse('index'))
         except Listing.DoesNotExist:
             return render(request, "devgigs/index.html", {
                 "Oops could not create listing!"
