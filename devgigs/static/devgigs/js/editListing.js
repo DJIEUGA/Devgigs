@@ -14,29 +14,24 @@ function edit_modal() {
         listing.onclick = () => {
 
             // Populate each form fields with current information of the listing
-            document.querySelectorAll('.listing-id').forEach((item, number) => {
-                if (number + 1 === Number(item.innerHTML)) {
-                    fetch(`/listing/${item.innerHTML}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log(data)
-                            document.querySelector('#input-company').value = data.listing.company
-                            document.querySelector('#input-title').value = data.listing.title
-                            document.querySelector('#input-tags').value = data.listing.tags
-                            document.querySelector('#input-description').value = data.listing.description
-                            document.querySelector('#input-website').value = data.listing.website
-                            document.querySelector('#input-logo').file = data.listing.logo
-                            document.querySelector('#input-email').value = data.listing.email
-                            document.querySelector('#input-location').value = data.listing.location
+            document.querySelectorAll('.listing-id').forEach((item) => {
 
-                            // Update the form's method, action and enctype attributes
-                            document.querySelector('#form-modal').setAttribute('method', 'post')
-                            document.querySelector('#form-modal').setAttribute('action', `/edit/${item.innerHTML}`)
-                            document.querySelector('#form-modal').setAttribute('enctype', 'multipart/form-data')
+                fetch(`/listing/${item.innerHTML}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.querySelector('#input-company').value = data.listing.company
+                        document.querySelector('#input-title').value = data.listing.title
+                        document.querySelector('#input-tags').value = data.listing.tags
+                        document.querySelector('#input-description').value = data.listing.description
+                        document.querySelector('#input-website').value = data.listing.website
+                        document.querySelector('#input-email').value = data.listing.email
+                        document.querySelector('#input-location').value = data.listing.location
 
-                            console.log(document.querySelector('#form-modal').getAttribute('action'))
-                        })
-                }
+                        // Update the form's method, action and enctype attributes
+                        document.querySelector('#form-modal').setAttribute('method', 'post')
+                        document.querySelector('#form-modal').setAttribute('action', `/edit/${item.innerHTML}`)
+                        document.querySelector('#form-modal').setAttribute('enctype', 'multipart/form-data')
+                    })
 
             })
 

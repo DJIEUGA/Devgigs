@@ -89,14 +89,14 @@ def edit_listing(request, listing_id):
 
 
 def delete_listing(request, listing_id):
-    if request.method == "GET":
-        try:
-            listing = Listing.objects.get(pk=listing_id)
-            listing.delete()
-        except Listing.DoesNotExist:
-            return render(request, "devgigs/manage.html", {
-                "message": "Listing was not found!"
-            })
+    try:
+        listing = Listing.objects.get(pk=listing_id)
+        listing.delete()
+        return HttpResponseRedirect(reverse('manage'))
+    except Listing.DoesNotExist:
+        return render(request, "devgigs/manage.html", {
+            "message": "Listing was not found!"
+        })
 
 
 def login_view(request):
