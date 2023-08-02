@@ -5,51 +5,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function edit_modal() {
+    const list = document.querySelectorAll('.edit-btn')
+    list.forEach(element => {
 
-    document.querySelector('#edit-btn').onclick = () => {
+    });
 
-        // form attribute
-        document.querySelector('#form-modal')
-        document.querySelector('#modal-heading').innerHTML = 'Edit Gig'
-        document.querySelector('#modal-subheading').innerHTML = 'Edit: Job Title'
-        document.querySelector('#form-save-btn').innerHTML = 'Save'
+    document.querySelectorAll('.edit-btn').forEach(listing => {
+        listing.onclick = () => {
 
-        document.querySelector('#create-btn').setAttribute('disabled', 'true')
-        document.querySelector('#edit-btn').setAttribute('disabled', 'true')
-        document.querySelector('.create-modal').style.display = 'block'
-        document.querySelector('.modal-backdrop').style.display = 'block'
-        // get_listing(4)
-    }
+            // Populate each form fields with current information of the listing
+            document.querySelectorAll('.listing-id').forEach((item, number) => {
+                if (number + 1 === Number(item.innerHTML)) {
+                    fetch(`/listing/${item.innerHTML}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            document.querySelector('#input-company').value = data.listing.company
+                            document.querySelector('#input-title').value = data.listing.title
+                            document.querySelector('#input-tags').value = data.listing.tags
+                            document.querySelector('#input-description').value = data.listing.description
+                            document.querySelector('#input-website').value = data.listing.website
+                            document.querySelector('#input-logo').file = data.listing.logo
+                            document.querySelector('#input-email').value = data.listing.email
+                            document.querySelector('#input-location').value = data.listing.location
+
+                            // Update the form's method, action and enctype attributes
+                            document.querySelector('#form-modal').setAttribute('method', 'post')
+                            document.querySelector('#form-modal').setAttribute('action', `/edit/${item.innerHTML}`)
+                            document.querySelector('#form-modal').setAttribute('enctype', 'multipart/form-data')
+
+                            console.log(document.querySelector('#form-modal').getAttribute('action'))
+                        })
+                }
+
+            })
+
+            // Set the text of the form heading, subheading and submit btn of the edit form
+            document.querySelector('#modal-heading').innerHTML = 'Edit Gig'
+            document.querySelector('#modal-subheading').innerHTML = 'Edit: Job Title'
+            document.querySelector('#form-save-btn').innerHTML = 'Save'
+
+            // Set the attribute of the edit form
+            listing.setAttribute('disabled', 'true')
+            document.querySelector('#create-btn').setAttribute('disabled', 'true')
+            document.querySelector('.create-modal').style.display = 'block'
+            document.querySelector('.modal-backdrop').style.display = 'block'
+        }
+    });
 
     // close modal
     document.querySelector('.close').onclick = (e) => {
         document.querySelector('#create-btn').removeAttribute('disabled')
-        document.querySelector('#edit-btn').removeAttribute('disabled')
+        document.querySelectorAll('.edit-btn').forEach(listing => {
+            listing.removeAttribute('disabled')
+        })
 
         document.querySelector('.create-modal').style.display = 'none'
         document.querySelector('.modal-backdrop').style.display = 'none'
     }
 
-    const modal = document.querySelector('#modal-container')
-    window.onclick = function (ev = new Event().target) {
-        if (ev == modal) {
-                document.querySelector('#create-btn').removeAttribute('disabled')
-                document.querySelector('#edit-btn').removeAttribute('disabled')
-
-                document.querySelector('.create-modal').style.display = 'none'
-                document.querySelector('.modal-backdrop').style.display = 'none'
-        }
-        else {
-            console.log("Clicking outside of modal will not close it!")
-        }
-    }
-
-}
-
-function get_listing(listingId) {
-    fetch(`/listing/${listingId}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log({ "data": data })
-        })
 }

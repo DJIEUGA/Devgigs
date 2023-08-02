@@ -13,7 +13,6 @@ def index(request):
     listings = Listing.objects.all().order_by("-id")
     for listing in listings:
         listing.tags = listing.tags.split(',')
-        print(listing.tags)
     return render(request, "devgigs/index.html", {
         "listings": listings
     })
@@ -22,6 +21,7 @@ def index(request):
 def show_listing(request, listing_id):
     try:
         listing = Listing.objects.get(pk=listing_id)
+        listing.tags = listing.tags.split(',')
     except Listing.DoesNotExist:
         pass
 
@@ -32,12 +32,14 @@ def show_listing(request, listing_id):
 
 def get_listing(request, listing):
     """Get a single listing from the database"""
-    try:
-        listing = Listing.objects.get(pk=listing)
-    except Listing.DoesNotExist:
-        return JsonResponse({"message": "Listing does not exist!"}, status=404)
+    if request.method == "GET":
+        try:
+            listing = Listing.objects.get(pk=listing)
+            listing.tags = listing.tags.split(',')
+        except Listing.DoesNotExist:
+            return JsonResponse({"message": "Listing does not exist!"}, status=404)
 
-    return JsonResponse({"listing": listing}, safe=False)
+    return JsonResponse({"listing": listing.serialize()}, safe=False)
 
 
 def create_listing(request):
@@ -78,10 +80,7 @@ def edit_listing(request, listing_id):
             listing.description = request.POST.get("description")
 
             listing.save()
-            return render(request, "devgigs/show.html", {
-                "message": "Listing updated successfully!",
-                "listing": listing
-            })
+            return HttpResponseRedirect(reverse('show', args=f'{listing_id}'))
 
         except Listing.DoesNotExist:
             return render(request, "devgigs/manage.html", {

@@ -57,16 +57,16 @@
                     </div>
                     <div class="col-sm-5 ">
                         <h3 style="font-size: larger;">
-                            <a href="show.html">{{listing.title}}</a>
+                            <a href="{% url 'show' listing.id %}">{{listing.title}}</a>
                         </h3>
                         <div class="font-weight-bold mb-2">{{listing.company}}</div>
-                        <ul class="d-flex flex-row justify-content-start">
+                        <dl class="d-flex flex-row justify-content-start flex-sm-wrap flex-md-nowrap ml-0">
                             {% for tag in listing.tags %}
-                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
-                                <a href="#">{{tag}}</a>
-                            </li>
+                            <dd class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a  href="#">{{tag}}</a>
+                            </dd>
                             {% endfor %}
-                        </ul>
+                        </dl>
                         <div class="font-weight-bold mt-4">
                             <i class="fa-solid fa-location-dot"></i> {{listing.location}}
                         </div>
