@@ -62,13 +62,13 @@
                         <div class="font-weight-bold mb-2">{{listing.company}}</div>
                         <dl class="d-flex flex-row justify-content-start flex-sm-wrap flex-md-nowrap ml-0">
                             {% for tag in listing.tags %}
-                            <dd class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
-                                <a  href="#">{{tag}}</a>
-                            </dd>
+                            <li class="d-flex justify-content-start bg-white text-white rounded-pill py-1 px-1 mr-1">
+                                <a href="/?tag={{tag}}">{{tag}}</a>
+                            </li>
                             {% endfor %}
                         </dl>
                         <div class="font-weight-bold mt-4">
-                            <i class="fa-solid fa-location-dot"></i> {{listing.location}}
+                            <i class="fa-solid fa-location-dot"></i>{{listing.location}}
                         </div>
                     </div>
                 </div>

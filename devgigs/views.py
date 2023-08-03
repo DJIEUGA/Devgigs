@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.urls import reverse
+from django.db.models import Q
 from .models import *
 import re
 
@@ -10,11 +11,35 @@ import re
 
 
 def index(request):
-    listings = Listing.objects.all().order_by("-id")
+    if request.GET.get('search'):
+        listings = Listing.objects.filter(Q(company__icontains=request.GET.get('search')) | Q(title__icontains=request.GET.get('search')) | Q(tags__icontains=request.GET.get('search')) | Q(location__icontains=request.GET.get('search'))  | Q(website__icontains=request.GET.get('search')))
+        print(request.GET.get('search'))
+        # print(listings)
+        
+        if len(listings) > 1:
+            search_has_result = True
+        else:
+            search_has_result = False
+    elif request.GET.get('tag'):
+        listings = Listing.objects.filter(Q(company__icontains=request.GET.get('tag')) | Q(title__icontains=request.GET.get('tag')) | Q(tags__icontains=request.GET.get('tag')) | Q(location__icontains=request.GET.get('tag'))  | Q(website__icontains=request.GET.get('tag')))
+        print(request.GET.get('tag'))
+        print(listings)
+        
+        if len(listings) > 1:
+            search_has_result = True
+        else:
+            search_has_result = False
+    else:
+        listings = Listing.objects.all().order_by("-id")
+        search_has_result = False
+
     for listing in listings:
-        listing.tags = listing.tags.split(',')
+            listing.tags = [tag.strip() for tag in listing.tags.split(',')]
+
+    # if requ
     return render(request, "devgigs/index.html", {
-        "listings": listings
+        "listings": listings,
+        "search_has_result": search_has_result
     })
 
 
