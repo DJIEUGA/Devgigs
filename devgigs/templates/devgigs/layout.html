@@ -14,6 +14,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'devgigs/styles.css' %}" />
     <script src="{% static 'devgigs/js/createModal.js' %}"></script>
+    <script src="{% static 'devgigs/js/flashMessage.js' %}"></script>
     {% block script %}{% endblock %}
 </head>
 
@@ -33,41 +34,47 @@
                     </header>
 
                     <form id="form-modal" action="">
-                    {% csrf_token %}
+                        {% csrf_token %}
                         <div class="mb-3">
                             <label for="company" class="inline-block mb-2">Company Name</label>
-                            <input id='input-company' type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="company" />
+                            <input id='input-company' type="text"
+                                class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="company" />
                         </div>
 
                         <div class="mb-3">
                             <label for="title" class="inline-sm-block mb-2">Job Title</label>
-                            <input id='input-title' type="text" class="border rounded p-2 col-md-6 col-md-12 mx-1 text-secondary" name="title"
+                            <input id='input-title' type="text"
+                                class="border rounded p-2 col-md-6 col-md-12 mx-1 text-secondary" name="title"
                                 placeholder="Example: Senior Python Developer" />
                         </div>
 
                         <div class="mb-3">
                             <label for="location" class="inline-block mb-2">Job Location</label>
-                            <input id='input-location' type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="location"
+                            <input id='input-location' type="text"
+                                class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="location"
                                 placeholder="Example: Remote, Boston MA, etc" />
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="inline-block mb-2">Contact Email</label>
-                            <input id='input-email' type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="email" />
+                            <input id='input-email' type="text"
+                                class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="email" />
                         </div>
 
                         <div class="mb-3">
                             <label for="website" class="inline-block mb-2">
                                 Website/Application URL
                             </label>
-                            <input id='input-website' type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="website" />
+                            <input id='input-website' type="text"
+                                class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="website" />
                         </div>
 
                         <div class="mb-3">
                             <label for="tags" class="inline-block mb-2">
                                 Tags (Comma Separated)
                             </label>
-                            <input id='input-tags' type="text" class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="tags"
+                            <input id='input-tags' type="text"
+                                class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="tags"
                                 placeholder="Example: Django, Backend, Postgres, etc" />
                         </div>
 
@@ -75,15 +82,17 @@
                             <label for="logo" class="inline-block mb-2">
                                 Company Logo
                             </label>
-                            <input id='input-logo' type="file" class="border rounded p-2 col-sm-6 mx-1 text-secondary" name="logo" />
+                            <input id='input-logo' type="file" class="border rounded p-2 col-sm-6 mx-1 text-secondary"
+                                name="logo" />
                         </div>
 
                         <div class="mb-3">
                             <label for="description" class="d-block mb-2">
                                 Job Description
                             </label>
-                            <textarea id='input-description' class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="description" rows="10"
-                                placeholder="Include tasks, requirements, salary, etc"></textarea>
+                            <textarea id='input-description'
+                                class="border rounded p-2 col-sm-6 col-md-12 mx-1 text-secondary" name="description"
+                                rows="10" placeholder="Include tasks, requirements, salary, etc"></textarea>
                         </div>
 
                         <div class="mb-3">

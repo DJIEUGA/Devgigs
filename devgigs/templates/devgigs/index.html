@@ -2,7 +2,16 @@
 {% load static %}
 
 {% block body %}
-
+{% if messages %}
+<div class="d-flex flex-column align-items-center">
+    {% for message in messages %}
+    <div class="message mb-4 bg-dark rounded text-white px-2 py-1">
+        <h6 class="position-relative mr-3">{{message}}<span style="font-size: 1.5em;top:-5px; right:-20px"
+                class="closeMsg">&times;</span></h6>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 <!-- hero -->
 <section class="flex-column justify-content-center align-center text-center mb-0 mt-5">
     <img style="height: 350px !important;" class="mx-auto col-sm-7" src="{% static 'devgigs/images/django01.png' %}"

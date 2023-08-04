@@ -1,30 +1,32 @@
 from django.db import IntegrityError
+from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.urls import reverse
 from django.db.models import Q
 from .models import *
-import re
 
 # Create your views here.
 
 
 def index(request):
     if request.GET.get('search'):
-        listings = Listing.objects.filter(Q(company__icontains=request.GET.get('search')) | Q(title__icontains=request.GET.get('search')) | Q(tags__icontains=request.GET.get('search')) | Q(location__icontains=request.GET.get('search'))  | Q(website__icontains=request.GET.get('search')))
+        listings = Listing.objects.filter(Q(company__icontains=request.GET.get('search')) | Q(title__icontains=request.GET.get('search')) | Q(
+            tags__icontains=request.GET.get('search')) | Q(location__icontains=request.GET.get('search')) | Q(website__icontains=request.GET.get('search')))
         print(request.GET.get('search'))
         # print(listings)
-        
+
         if len(listings) > 1:
             search_has_result = True
         else:
             search_has_result = False
     elif request.GET.get('tag'):
-        listings = Listing.objects.filter(Q(company__icontains=request.GET.get('tag')) | Q(title__icontains=request.GET.get('tag')) | Q(tags__icontains=request.GET.get('tag')) | Q(location__icontains=request.GET.get('tag'))  | Q(website__icontains=request.GET.get('tag')))
+        listings = Listing.objects.filter(Q(company__icontains=request.GET.get('tag')) | Q(title__icontains=request.GET.get('tag')) | Q(
+            tags__icontains=request.GET.get('tag')) | Q(location__icontains=request.GET.get('tag')) | Q(website__icontains=request.GET.get('tag')))
         print(request.GET.get('tag'))
         print(listings)
-        
+
         if len(listings) > 1:
             search_has_result = True
         else:
@@ -34,7 +36,7 @@ def index(request):
         search_has_result = False
 
     for listing in listings:
-            listing.tags = [tag.strip() for tag in listing.tags.split(',')]
+        listing.tags = [tag.strip() for tag in listing.tags.split(',')]
 
     # if requ
     return render(request, "devgigs/index.html", {
@@ -46,7 +48,7 @@ def index(request):
 def show_listing(request, listing_id):
     try:
         listing = Listing.objects.get(pk=listing_id)
-        listing.tags = listing.tags.split(',')
+        listing.tags = [tag.strip() for tag in listing.tags.split(',')]
     except Listing.DoesNotExist:
         pass
 
@@ -101,22 +103,22 @@ def edit_listing(request, listing_id):
             listing.email = request.POST.get("email")
             listing.website = request.POST.get("website")
             listing.tags = request.POST.get("tags")
-            listing.logo = request.FILES["logo"]
             listing.description = request.POST.get("description")
 
             listing.save()
+            messages.success(request, "Listing Updated Successfully!")
             return HttpResponseRedirect(reverse('show', args=f'{listing_id}'))
 
         except Listing.DoesNotExist:
-            return render(request, "devgigs/manage.html", {
-                "message": "Oops, could not get listing!"
-            })
+            messages.info(request, "Oop! Could not get the listing")
+            return render(request, "devgigs/manage.html")
 
 
 def delete_listing(request, listing_id):
     try:
         listing = Listing.objects.get(pk=listing_id)
         listing.delete()
+        messages.success(request, "Listing deleted successfully")
         return HttpResponseRedirect(reverse('manage'))
     except Listing.DoesNotExist:
         return render(request, "devgigs/manage.html", {
@@ -135,6 +137,7 @@ def login_view(request):
         # Check if authentication successful
         if user is not None:
             login(request, user)
+            messages.success(request, f"Welcome {username}")
             return HttpResponseRedirect(reverse("index"))
         else:
             return render(request, "devgigs/login.html", {
@@ -163,7 +166,7 @@ def register(request):
 
         # Ensure password matches confirmation
         password = request.POST.get("password")
-        confirmation = request.POST.get("confirmation")
+        confirmation = request.POSfT.get("confirmation")
         if password != confirmation:
             return render(request, "devgigs/register.html", {
                 "message": "Passwords must match."
@@ -178,6 +181,7 @@ def register(request):
                 "message": "Username already taken."
             })
         login(request, user)
+        messages.success(request, f"Welcome {username}")
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "devgigs/register.html")
