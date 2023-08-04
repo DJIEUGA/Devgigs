@@ -121,9 +121,8 @@ def delete_listing(request, listing_id):
         messages.success(request, "Listing deleted successfully")
         return HttpResponseRedirect(reverse('manage'))
     except Listing.DoesNotExist:
-        return render(request, "devgigs/manage.html", {
-            "message": "Listing was not found!"
-        })
+        messages.info(request, "Listing was not found!")
+        return render(request, "devgigs/manage.html")
 
 
 def login_view(request):
