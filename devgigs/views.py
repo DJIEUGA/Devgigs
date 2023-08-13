@@ -107,7 +107,7 @@ def edit_listing(request, listing_id):
 
             listing.save()
             messages.success(request, "Listing Updated Successfully!")
-            return HttpResponseRedirect(reverse('show', args=f'{listing_id}'))
+            return HttpResponseRedirect(reverse('show', args=[listing_id]))
 
         except Listing.DoesNotExist:
             messages.info(request, "Oop! Could not get the listing")
