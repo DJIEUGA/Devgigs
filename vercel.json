@@ -3,12 +3,23 @@
     {
       "src": "capstone/wsgi.py",
       "use": "@vercel/python"
+    },
+    {
+      "src": "build.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles"
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "capstone/wsgi.py"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1
     }
   ]
 }
