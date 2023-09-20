@@ -9,10 +9,6 @@
     {
       "src": "/(.*)",
       "dest": "capstone/wsgi.py"
-    },
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
     }
   ]
 }
