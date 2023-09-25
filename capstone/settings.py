@@ -88,11 +88,19 @@ if os.environ.get("VERCEL_ENV") == "production":
             )
         }
     }
-else:
+elif os.environ.get("VERCEL_ENV") == "development":
     DATABASES = {
         'default': {
             'ENGINE': dj_database_url.config(
                 default=os.environ.get("DEVELOPMENT_DB_URL"), conn_max_age=600
+            )
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': dj_database_url.config(
+                default=os.environ.get("db.postgresql"), conn_max_age=600
             )
         }
     }
