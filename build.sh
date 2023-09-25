@@ -1,3 +1,4 @@
 pip install -r requirements.txt
-python3.9 manage.py collectstatic --noinput
-python3.9 manage.py migrate
+py manage.py collectstatic --noinput
+py manage.py makemigrations devgigs
+py manage.py migrate
