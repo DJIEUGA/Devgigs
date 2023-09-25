@@ -100,7 +100,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': dj_database_url.config(
-                default=os.environ.get("db.postgresql"), conn_max_age=600
+                default=os.environ.get("DEVELOPMENT_DB_URL"), conn_max_age=600
             )
         }
     }
