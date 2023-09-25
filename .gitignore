@@ -2,6 +2,10 @@
 *.log
 *.pyc
 __pycache__
+db.sqlite3
+.idea
+secrets.env
+
 
 # Environments 
 .env 
