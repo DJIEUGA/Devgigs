@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'capstone.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if os.environ.get("VERCEL_ENV") == "Production":
+if os.environ.get("VERCEL_ENV") == "production":
     DATABASES = {
         'default':  dj_database_url.config(
             default=os.environ.get("PRODUCTION_DB_URL"), conn_max_age=600
