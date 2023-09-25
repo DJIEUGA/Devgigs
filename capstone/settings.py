@@ -96,6 +96,13 @@ elif os.environ.get("VERCEL_ENV") == "development":
             )
         }
     }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': "django.db.backends.postgresql",
+            "name": os.environ.get("db")
+        }
+    }
 
 AUTH_USER_MODEL = 'devgigs.user'
 
