@@ -82,15 +82,9 @@ WSGI_APPLICATION = 'capstone.wsgi.application'
 
 if os.environ.get("VERCEL_ENV") == "production":
     DATABASES = {
-        'default': {
-            'NAME': 'devgigs_production_db',
-            'USER': 'devgigs_production_db_user',
-            'PASSWORD': 'Qgg61Uoi8eNe5VnN5ltZuGibroJPR8n0',
-            'HOST': 'dpg-ck8r1bnsasqs738hki3g-a.frankfurt-postgres.render.com',
-            'PORT': '', 'CONN_MAX_AGE': 600,
-            'CONN_HEALTH_CHECKS': False,
-            'ENGINE': 'django.db.backends.postgresql'
-        }
+        'default':  dj_database_url.config(
+            default=os.environ.get("PRODUCTION_DB_URL"), conn_max_age=400
+        )
     }
 else:
     DATABASES = {
