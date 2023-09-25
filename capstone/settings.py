@@ -80,29 +80,23 @@ WSGI_APPLICATION = 'capstone.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if os.environ.get("VERCEL_ENV") == "production" or os.environ.get("VERCEL_ENV") == "development":
+if os.environ.get("VERCEL_ENV") == "production":
     DATABASES = {
-        'default': {
-            'NAME': 'devgigs_production_db', 
-            'USER': 'devgigs_production_db_user', 
-            'PASSWORD': 'Qgg61Uoi8eNe5VnN5ltZuGibroJPR8n0', 
-            'HOST': 'dpg-ck8r1bnsasqs738hki3g-a.frankfurt-postgres.render.com', 
-            'PORT': '', 'CONN_MAX_AGE': 600, 
-            'CONN_HEALTH_CHECKS': False, 
-            'ENGINE': 'django.db.backends.postgresql'
-            }
+        'default':  dj_database_url.config(
+            default=os.environ.get("PRODUCTION_DB_URL"), conn_max_age=600
+        )
     }
 else:
     DATABASES = {
         'default': {
-            'NAME': 'devgigs_production_db', 
-            'USER': 'devgigs_production_db_user', 
-            'PASSWORD': 'Qgg61Uoi8eNe5VnN5ltZuGibroJPR8n0', 
-            'HOST': 'dpg-ck8r1bnsasqs738hki3g-a.frankfurt-postgres.render.com', 
-            'PORT': '', 'CONN_MAX_AGE': 600, 
-            'CONN_HEALTH_CHECKS': False, 
+            'NAME': 'devgigs_production_db',
+            'USER': 'devgigs_production_db_user',
+            'PASSWORD': 'Qgg61Uoi8eNe5VnN5ltZuGibroJPR8n0',
+            'HOST': 'dpg-ck8r1bnsasqs738hki3g-a.frankfurt-postgres.render.com',
+            'PORT': '', 'CONN_MAX_AGE': 600,
+            'CONN_HEALTH_CHECKS': False,
             'ENGINE': 'django.db.backends.postgresql'
-            }
+        }
     }
 
 AUTH_USER_MODEL = 'devgigs.user'
