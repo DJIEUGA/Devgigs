@@ -100,7 +100,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': "django.db.backends.postgresql",
-            "name": os.environ.get("db")
+            "NAME": os.environ.get("db")
         }
     }
 
