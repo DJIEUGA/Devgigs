@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'capstone.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if os.environ.get("VERCEL_ENV"):
+if os.environ.get("VERCEL_ENV") == "production" or os.environ.get("VERCEL_ENV") == "development":
     DATABASES = {
         'default': {
             'NAME': 'devgigs_production_db', 
