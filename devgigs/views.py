@@ -165,7 +165,7 @@ def register(request):
 
         # Ensure password matches confirmation
         password = request.POST.get("password")
-        confirmation = request.POSfT.get("confirmation")
+        confirmation = request.POST.get("confirmation")
         if password != confirmation:
             return render(request, "devgigs/register.html", {
                 "message": "Passwords must match."
