@@ -133,7 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 if os.environ.get("VERCEL"):
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    STATIC_ROOT = BASE_DIR/'staticfiles'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'devgigs/media')
     STATIC_URL = 'static/'
     MEDIA_URL = '/media/'
