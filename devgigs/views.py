@@ -39,7 +39,7 @@ def index(request):
         listing.tags = [tag.strip() for tag in listing.tags.split(',')]
 
     # if requ
-    return render(request, "/devgigs/index.html", {
+    return render(request, "devgigs/index.html", {
         "listings": listings,
         "search_has_result": search_has_result
     })
