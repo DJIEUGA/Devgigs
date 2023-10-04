@@ -32,7 +32,8 @@ if os.environ.get("VERCEL_ENV") == "production":
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
