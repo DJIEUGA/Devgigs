@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'capstone.wsgi.application'
+WSGI_APPLICATION = 'capstone.wsgi.app'
 
 
 # Database
