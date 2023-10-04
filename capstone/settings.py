@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-++8aw#3y4z#9q6+^hp-nn_rm&+u0dm(#ka8uuy#^=s-83@k-@k
 if os.environ.get("VERCEL_ENV") == "production":
     DEBUG = False
 else:
-    DEBUG = True
+    DEBUG = False
 
 
 ALLOWED_HOSTS = ['*']
@@ -136,7 +136,7 @@ if os.environ.get("VERCEL"):
     MEDIA_ROOT = os.path.join(BASE_DIR, 'devgigs/media')
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
-    STATIC_ROOT = BASE_DIR/'staticfiles'
+    STATIC_ROOT = BASE_DIR/ 'staticfiles'
 
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 else:
@@ -144,7 +144,7 @@ else:
     MEDIA_URL = '/media/'
 
     STATIC_URL = 'static/'
-    STATIC_ROOT = BASE_DIR/'staticfiles'
+    STATIC_ROOT = BASE_DIR/ 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
