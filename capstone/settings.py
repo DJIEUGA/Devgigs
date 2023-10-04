@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-++8aw#3y4z#9q6+^hp-nn_rm&+u0dm(#ka8uuy#^=s-83@k-@k
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get("VERCEL_ENV") == "production":
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = True
 
@@ -131,18 +131,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'devgigs/media')
-MEDIA_URL = '/media/'
-
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR/'staticfiles'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 if os.environ.get("VERCEL"):
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     MEDIA_ROOT = os.path.join(BASE_DIR, 'devgigs/media')
@@ -150,3 +138,14 @@ if os.environ.get("VERCEL"):
     MEDIA_URL = '/media/'
 
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'devgigs/media')
+    MEDIA_URL = '/media/'
+
+    STATIC_URL = 'static/'
+    STATIC_ROOT = BASE_DIR/'staticfiles'
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
