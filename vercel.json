@@ -26,5 +26,6 @@
       "src": "/(.*)",
       "dest": "capstone/wsgi.py"
     }
-  ]
+  ],
+  "outputDirectory": "staticfiles_build"
 }
