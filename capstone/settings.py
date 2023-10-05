@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-++8aw#3y4z#9q6+^hp-nn_rm&+u0dm(#ka8uuy#^=s-83@k-@k
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get("VERCEL_ENV") == "production":
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = False
 
