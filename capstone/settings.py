@@ -134,7 +134,7 @@ USE_TZ = True
 MEDIA_ROOT = os.path.join(BASE_DIR, 'devgigs/media')
 MEDIA_URL = '/media/'
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR/'staticfiles'
 STORAGES = {
     "staticfiles": {
