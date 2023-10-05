@@ -1,5 +1,4 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "capstone/wsgi.py",
@@ -13,7 +12,7 @@
       "src": "build.sh",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "staticfiles"
+        "distDir": "staticfiles_build"
       }
     }
   ],
@@ -27,5 +26,5 @@
       "dest": "capstone/wsgi.py"
     }
   ],
-  "outputDirectory": "staticfiles"
+  "outputDirectory": "staticfiles_build"
 }
